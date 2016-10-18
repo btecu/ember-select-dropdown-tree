@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'select-dropdown-tree'
+  name: 'ember-select-dropdown-tree'
 };
