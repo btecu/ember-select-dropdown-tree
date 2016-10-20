@@ -35,7 +35,7 @@ export default SelectDropdown.extend({
     this.setProperties({ tree, list });
   },
 
-  branches: computed('token', 'values.[]', function() {
+  branches: computed('token', 'model.[]', 'values.[]', function() {
     this.filterModel();
 
     return this.get('tree');
