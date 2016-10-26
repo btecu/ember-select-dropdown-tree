@@ -1,6 +1,6 @@
 {
   "name": "ember-select-dropdown-tree",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tree dropdown for ember-select",
   "directories": {
     "doc": "doc",
