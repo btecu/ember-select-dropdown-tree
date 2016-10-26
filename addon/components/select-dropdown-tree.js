@@ -19,7 +19,7 @@ export default SelectDropdown.extend({
   list: null,
   tree: null,
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
 
     let options = {
