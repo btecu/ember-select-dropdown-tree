@@ -19,18 +19,30 @@ export default SelectDropdown.extend({
   list: null,
   tree: null,
 
-  didReceiveAttrs() {
+  didReceiveAttrs(attrs) {
+    // Don't do any work if model hasn't changed
+    let { oldAttrs, newAttrs } = attrs;
+    if (oldAttrs && oldAttrs.model.value === newAttrs.model.value) {
+      return;
+    }
+
     this._super(...arguments);
 
+    let model = this.get('model');
     let options = {
-      isExpanded: true,
+      isExpanded: get(model, 'length') < 20,
       labelKey: this.get('labelKey'),
       valueKey: this.get('valueKey')
     };
 
-    let model = this.get('model');
     let tree = buildTree(model, options);
     let list = getDescendents(tree);
+
+    if (!options.isExpanded) {
+      // Expand roots if tree is not expanded
+      list.filter(x => isNone(get(x, 'parentId')))
+        .forEach(x => x.set('isExpanded', true));
+    }
 
     this.setProperties({ tree, list });
   },
@@ -161,8 +173,12 @@ export default SelectDropdown.extend({
     list
       .filter(el => get(el, 'name').toLowerCase().indexOf(token) > -1)
       .forEach(el => {
+        el.set('isExpanded', true);
         el.set('isVisible', true);
-        this.getAncestors(list, el).setEach('isVisible', true);
+
+        let ancestors = this.getAncestors(list, el);
+        ancestors.setEach('isExpanded', true);
+        ancestors.setEach('isVisible', true);
       });
   }
 });
