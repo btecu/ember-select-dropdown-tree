@@ -53,7 +53,9 @@ export default SelectDropdown.extend({
   },
 
   branches: computed('token', 'model.[]', 'values.[]', function() {
-    this.filterModel();
+    if (this.get('shouldFilter')) {
+      this.filterModel();
+    }
 
     return this.get('tree');
   }),
