@@ -42,6 +42,11 @@ export default SelectDropdown.extend({
       // Expand roots if tree is not expanded
       list.filter(x => isNone(get(x, 'parentId')))
         .forEach(x => x.set('isExpanded', true));
+
+      let { token } = newAttrs;
+      if (isPresent(token) && isPresent(token.value)) {
+        this.setVisibility(list, token.value.toLowerCase());
+      }
     }
 
     this.setProperties({ tree, list });
