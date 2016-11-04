@@ -6,8 +6,8 @@ module.exports = {
 
   afterInstall: function(options) {
     return this.addPackagesToProject([
-      { name: 'ember-select', target: '^0.1.3' },
-      { name: 'ember-simple-tree', target: '0.0.1' }
+      { name: 'ember-select', target: '^0.1.4' },
+      { name: 'ember-simple-tree', target: '^0.0.2' }
     ]);
   }
 };
