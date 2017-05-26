@@ -19,16 +19,16 @@ export default SelectDropdown.extend({
   list: null,
   tree: null,
 
-  didReceiveAttrs(attrs) {
+  didReceiveAttrs() {
     // Don't do any work if model hasn't changed
-    let { oldAttrs, newAttrs } = attrs;
-    if (oldAttrs && oldAttrs.model.value === newAttrs.model.value) {
+    let oldModel = this.get('oldModel');
+    let model = this.get('model');
+    if (oldModel && oldModel === model) {
       return;
     }
 
     this._super(...arguments);
 
-    let model = this.get('model');
     let options = {
       isExpanded: get(model, 'length') < 20,
       labelKey: this.get('labelKey'),
@@ -43,13 +43,13 @@ export default SelectDropdown.extend({
       list.filter(x => isNone(get(x, 'parentId')))
         .forEach(x => x.set('isExpanded', true));
 
-      let { token } = newAttrs;
+      let token = this.get('token');
       if (isPresent(token) && isPresent(token.value)) {
         this.setVisibility(list, token.value.toLowerCase());
       }
     }
 
-    this.setProperties({ tree, list });
+    this.setProperties({ tree, list, oldModel: model });
   },
 
   branches: computed('token', 'model.[]', 'values.[]', function() {
