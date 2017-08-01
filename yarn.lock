@@ -2339,9 +2339,9 @@ ember-router-generator@^1.0.0:
   dependencies:
     recast "^0.11.3"
 
-ember-select@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ember-select/-/ember-select-0.3.1.tgz#0dbf95f039bbfa1bf59b2c3393e76b62802547ba"
+ember-select@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/ember-select/-/ember-select-0.3.2.tgz#116c1d5b31f85e4f15adf53d141069fb8c732675"
   dependencies:
     ember-cli-babel "^6.3.0"
     ember-cli-htmlbars "^2.0.1"
