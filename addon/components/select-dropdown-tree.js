@@ -1,18 +1,11 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { computed, get } from '@ember/object';
+import { isEmpty, isNone, isPresent } from '@ember/utils';
+import { run } from '@ember/runloop';
 import layout from '../templates/components/select-dropdown-tree';
 import SelectDropdown from 'ember-select/components/select-dropdown';
 import { buildTree, getDescendents } from 'ember-select/utils/tree';
 import { bringInView } from 'ember-select/utils/view';
-
-const {
-  A,
-  computed,
-  get,
-  isEmpty,
-  isNone,
-  isPresent,
-  run
-} = Ember;
 
 export default SelectDropdown.extend({
   layout,
